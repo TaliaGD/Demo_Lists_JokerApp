@@ -1,6 +1,8 @@
 package be.ehb.demo_lists_jokerapp.model;
 
-public class Joke {
+import java.io.Serializable;
+//serialazable nodig om data kunnen doorsturen naar tweede scherm
+public class Joke implements Serializable {
 
     private String setup;
     private String punchline;

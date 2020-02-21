@@ -1,6 +1,7 @@
 package be.ehb.demo_lists_jokerapp.util;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.button.MaterialButton;
@@ -24,11 +26,27 @@ public class JokeAdapter extends RecyclerView.Adapter<JokeAdapter.JokeViewHolder
         final TextView tvSetup;
         final Button btnClou;
 
+        //btn listener
+     final View.OnClickListener detailListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //welke card(rij)?
+                int position = getAdapterPosition();
+
+                //data in de bundel steken om door te geven
+                Bundle data = new Bundle();
+                data.putSerializable("passedJoke", items.get(position));
+                //navigatie starten
+                Navigation.findNavController(view).navigate(R.id.jokeList_to_details,data);
+            }
+        };
+
         //default constructor(zonder parameters)
         public JokeViewHolder(@NonNull View itemView) {
             super(itemView);
             tvSetup = itemView.findViewById(R.id.tv_setup);
             btnClou = itemView.findViewById(R.id.btn_clou);
+            btnClou.setOnClickListener(detailListener);
         }
     }
 
