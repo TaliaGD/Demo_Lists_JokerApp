@@ -72,7 +72,9 @@ public class JokeListFragment extends Fragment {
         model.getJokes().observe(getViewLifecycleOwner(), new Observer<ArrayList<Joke>>() {
             @Override
             public void onChanged(ArrayList<Joke> jokes) {
+
                 adapter.addItems(jokes);
+                adapter.notifyDataSetChanged();
             }
         });
 
